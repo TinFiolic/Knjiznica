@@ -1,0 +1,50 @@
+<button class="btn btn-primary" (click)="redirectMenu()">« Nazad na menu</button>  <hr>
+<button type="button" class="btn btn-light" (click)="changeTab(0)" style="margin-right: 1em; margin-left: 40%;">Trenutne posudbe</button>
+<button type="button" class="btn btn-light" (click)="changeTab(1)" style="margin-right: 1em;">Povijest svih posudbi</button> <hr><br><br>
+
+<div *ngIf="tab == 0">
+  <input *ngIf="posudbeKorisnika.length > 1" type="text" class="form-control" [(ngModel)]="search" placeholder="Unesite bilo koji keyword za filtraciju sadržaja" style="width: 30em"> <br>
+  <table >
+      <th>Autor</th>
+      <th>Zemlja podrijetla</th>
+      <th>Jezik knjige</th>
+      <th>Link na Wiki</th>
+      <th>Broj stranica</th>
+      <th>Naslov knjige</th>
+      <th>Godina izdanja</th>
+      <th></th>
+      <tr *ngFor="let i = index; let book of posudbe | searchFilter: search">
+        <td>{{ book.book.author }}</td>
+        <td>{{ book.book.country }}</td>
+        <td>{{ book.book.language }}</td>
+        <td>{{ book.book.link }}</td>
+        <td>{{ book.book.pages }}</td>
+        <td>{{ book.book.title }}</td>
+        <td>{{ book.book.year }}</td>
+        <td><button class="btn btn-success" (click)="vrati(book)">Vrati knjigu</button></td>
+      </tr>
+  </table>
+</div>
+
+<div *ngIf="tab == 1">
+  <input *ngIf="posudbeHistory.length > 1" type="text" class="form-control" [(ngModel)]="search" placeholder="Unesite bilo koji keyword za filtraciju sadržaja" style="width: 30em"> <br>
+  <table *ngIf="posudbeHistory.length > 1">
+      <th>Autor</th>
+      <th>Zemlja podrijetla</th>
+      <th>Jezik knjige</th>
+      <th>Link na Wiki</th>
+      <th>Broj stranica</th>
+      <th>Naslov knjige</th>
+      <th>Godina izdanja</th>
+      <th></th>
+      <tr *ngFor="let i = index; let book of posudbeHistory | searchFilter: search">
+        <td>{{ book.book.author }}</td>
+        <td>{{ book.book.country }}</td>
+        <td>{{ book.book.language }}</td>
+        <td>{{ book.book.link }}</td>
+        <td>{{ book.book.pages }}</td>
+        <td>{{ book.book.title }}</td>
+        <td>{{ book.book.year }}</td>
+      </tr>
+  </table>
+</div>

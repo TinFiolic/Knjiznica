@@ -1,0 +1,22 @@
+* {
+    margin: 0 auto; 
+}
+
+br {
+    display: block;
+    margin: 5px 0;
+ }
+
+ .login-form {
+     margin-top: 15em;
+ }
+
+ h1 {
+    font-family: "Trebuchet MS"; 
+ }
+
+ input {
+     border: none;
+     border-bottom: 2px solid #0D6EFD;
+     padding: 5px;
+ }

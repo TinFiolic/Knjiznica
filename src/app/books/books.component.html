@@ -1,0 +1,24 @@
+<button class="btn btn-primary" (click)="redirectMenu()">« Nazad na menu</button> <br><br>
+<p *ngIf="knjige.length > 1"><b><u>Filtracija:</u></b></p>
+<input *ngIf="knjige.length > 1" type="text" class="form-control" [(ngModel)]="search" placeholder="Unesite bilo koji keyword za filtraciju sadržaja" style="width: 30em"> <br>
+
+<table *ngIf="knjige.length > 1">
+    <th>Autor</th>
+    <th>Zemlja podrijetla</th>
+    <th>Jezik knjige</th>
+    <th>Link na Wiki</th>
+    <th>Broj stranica</th>
+    <th>Naslov knjige</th>
+    <th>Godina izdanja</th>
+    <th></th>
+    <tr *ngFor="let i = index; let book of knjige | searchFilter: search">
+      <td>{{ book.author }}</td>
+      <td>{{ book.country }}</td>
+      <td>{{ book.language }}</td>
+      <td>{{ book.link }}</td>
+      <td>{{ book.pages }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.year }}</td>
+      <td><button class="btn btn-warning" (click)="posudi(book)" [disabled]="posudbeKorisnika.length > 2">Posudi knjigu</button></td>
+    </tr>
+</table>

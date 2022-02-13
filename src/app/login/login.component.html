@@ -1,0 +1,42 @@
+<div class="text-center login-form" *ngIf="loginFormVisible">
+    <h1>Prijava</h1><br>
+    <input type="text" [(ngModel)]="usernameLogin" placeholder="Korisničko ime"><br>
+    <input type="password" [(ngModel)]="passwordLogin" placeholder="Password"><br>
+
+    <button class="btn btn-primary" (click)="login()">Prijavite se</button>
+    
+    <br><br>
+
+    <div class="alert alert-info">
+        Ukoliko nemate račun, <a role="button" (click)="switchForms()"><u>registrirajte se ovdje</u></a>!
+    </div>
+
+    <br>
+
+    <div class="alert alert-danger" *ngIf="poruka.length != 0">
+        <b>{{poruka}}</b>
+    </div>
+</div>
+
+<div class="text-center login-form" *ngIf="!loginFormVisible">
+    <h1>Registrirajte se</h1><br>
+    <input type="text" [(ngModel)]="usernameRegister" placeholder="Korisničko ime"><br>
+    <input type="password" [(ngModel)]="passwordRegister" placeholder="Password"><br>
+    <input type="password" [(ngModel)]="repeatPasswordRegister" placeholder="Ponovite password"><br>
+    <input type="checkbox" [(ngModel)]="permissionRegister" name="permissionBox">
+    <label for="permissionBox" style="padding-left: 5px"><b>Admin račun?</b></label><br>
+
+    <button class="btn btn-primary" (click)="register()">Registrirajte se</button>
+    
+    <br><br>
+
+    <div class="alert alert-info">
+        Ukoliko imate račun, <a role="button" (click)="switchForms()"><u>prijavite se ovdje</u></a>!
+    </div>
+
+    <br>
+
+    <div class="alert alert-danger" *ngIf="poruka.length != 0">
+        <b>{{poruka}}</b>
+    </div>
+</div>
