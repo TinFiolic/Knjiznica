@@ -1,0 +1,25 @@
+<div class="container" style="margin-top: 15em;">
+    <div class="row" style="text-align: center;">
+      <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px; padding: 20px; margin-right: 20px;">
+        <h3>Pregled vašeg računa</h3><br>
+        <p>Ovdje možete pregledati vaš račun, knjige koje trenutno posjedujete, te
+            povijest posudbi svih knjiga iz naše knjižnice.
+        </p><br>
+        <button type="button" class="btn btn-primary" (click)="redirectProfil()">Pregled profila</button>
+      </div>
+      <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px; padding: 20px; margin-right: 20px;">
+        <h3>Pregled dostupnih knjiga u našoj knjižnici</h3><br>
+        <p>Pogledajte trenutno dostupne knjige koje nudimo za posudbu u našoj njižnici,
+            svaka posuđena knjiga mora biti vraćena u roku od tjedan dana i jedan korisnik
+            kod sebe može imati najviše <b>3</b> posuđene knjige od jednom!
+        </p><br>
+        <button type="button" class="btn btn-warning" (click)="redirectKnjige()">Pregled knjiga</button>
+      </div>
+      <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px; padding: 20px;" *ngIf="loggedUser.permission == 1">
+        <h3>Administracija</h3><br>
+        <p>Ovdje možete ručno dodavati knjige u katalog knjižnice i brisati knjige koje smatrate da nisu potrebne
+        </p><br>
+        <button type="button" class="btn btn-dark" (click)="redirectAdmin()">Pregled knjiga</button>
+      </div>
+    </div>
+  </div>

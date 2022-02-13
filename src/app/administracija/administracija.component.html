@@ -1,0 +1,64 @@
+<button class="btn btn-primary" (click)="redirectMenu()">« Nazad na menu</button>  <hr>
+<button type="button" class="btn btn-light" (click)="changeTab(0)" style="margin-right: 1em; margin-left: 35%;">Importaj knjige</button>
+<button type="button" class="btn btn-light" (click)="changeTab(1)" style="margin-right: 1em;">Unos nove knjige</button>
+<button type="button" class="btn btn-light" (click)="changeTab(2)">Pregled i brisanje knjiga</button> <hr>
+<div class="container" style="margin-top: 5em;">
+    <div class="row" style="text-align: center;" *ngIf="selectedTab == 0">
+      <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px; padding: 20px; margin-right: 20px;">
+        <h3>Importaj knjige iz vanjskog izvora</h3><br>
+        <p>Import će se dogoditi iz vanjskog JSON-a, te će se data prebaciti u našu Firebase bazu.
+        </p><br>
+        <button type="button" class="btn btn-primary" (click)="importBooks()">Importaj knjige</button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row" style="text-align: center;" *ngIf="selectedTab == 1">
+        <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px; padding: 20px; margin-right: 20px;">
+          <h3>Unesi novu knjigu</h3><br>
+          <input type="text" class="form-control" [(ngModel)]="unosAutor" placeholder="Autor"> <br>
+          <input type="text" class="form-control" [(ngModel)]="unosZemlja" placeholder="Zemlja podrijetla"> <br>
+          <input type="text" class="form-control" [(ngModel)]="unosJezik" placeholder="Jezik knjige"> <br>
+          <input type="text" class="form-control" [(ngModel)]="unosLink" placeholder="Link na Wiki"> <br>
+          <input type="number" class="form-control" [(ngModel)]="unosStranice" placeholder="Broj stranica"> <br>
+          <input type="text" class="form-control" [(ngModel)]="unosNaslov" placeholder="Naslov knjige"> <br>
+          <input type="number" class="form-control" [(ngModel)]="unosGodina" placeholder="Godina izdanja"> <br>
+          <button type="button" class="btn btn-primary" (click)="unesiKnjigu()">Unesi knjigu</button> <br> <br>
+          <div class="alert alert-danger" role="alert" *ngIf="poruka.length > 1">
+            {{poruka}}
+          </div>
+          <div class="alert alert-success" role="alert" *ngIf="porukaHappy.length > 1">
+            {{porukaHappy}}
+          </div>
+        </div>
+      </div>
+
+    <br>
+    
+    <div class="row" style="text-align: center;" *ngIf="naseKnjige.length > 1 && selectedTab == 2">
+        <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px;"> <br>
+            <input type="text" class="form-control" [(ngModel)]="search" placeholder="Unesite bilo koji keyword za filtraciju sadržaja" style="width: 30em"> <br>
+            <table>
+                <th>Autor</th>
+                <th>Zemlja podrijetla</th>
+                <th>Jezik knjige</th>
+                <th>Link na Wiki</th>
+                <th>Broj stranica</th>
+                <th>Naslov knjige</th>
+                <th>Godina izdanja</th>
+                <th></th>
+                <tr *ngFor="let book of naseKnjige | searchFilter: search">
+                  <td>{{ book.author }}</td>
+                  <td>{{ book.country }}</td>
+                  <td>{{ book.language }}</td>
+                  <td>{{ book.link }}</td>
+                  <td>{{ book.pages }}</td>
+                  <td>{{ book.title }}</td>
+                  <td>{{ book.year }}</td>
+                  <td><button class="btn btn-danger" (click)="obrisiKnjigu(book)">Obriši knjigu</button></td>
+                </tr>
+            </table>
+        </div>
+      </div>
+  </div>

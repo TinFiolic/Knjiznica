@@ -1,0 +1,11 @@
+<div class="alert alert-primary" role="alert" *ngIf="loggedUser != null" style="padding-bottom: 4em;">
+    <p style="float: left">
+        Dobrodošli, <b>{{loggedUser.username}}</b>! <br>
+        Razina prava: <b>{{loggedUser.permission}}</b>
+    </p> 
+    <p style="float: right">
+        <button class="btn btn-danger" (click)="logout()">Odjavite se</button>
+    </p>
+</div>
+
+<router-outlet></router-outlet>
