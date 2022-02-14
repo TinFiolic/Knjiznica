@@ -5,12 +5,13 @@ import { BooksComponent } from './books/books.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProfilComponent } from './profil/profil.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent },
-  { path: 'user/:username', component: LoginComponent },
+  { path: 'user/:username', component: UserComponent },
   { path: 'knjige', component: BooksComponent },
   { path: 'administracija', component: AdministracijaComponent },
   { path: 'profil', component: ProfilComponent },

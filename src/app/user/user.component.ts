@@ -7,11 +7,11 @@ import { HistoryBook } from '../static/HistoryBook';
 import { User } from '../static/User';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.component.html',
-  styleUrls: ['./profil.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class ProfilComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   booksJson : string = "https://faks-24a45-default-rtdb.europe-west1.firebasedatabase.app/knjige.json";
   borrowedBooksJson : string = "https://faks-24a45-default-rtdb.europe-west1.firebasedatabase.app/posudba.json";
@@ -20,6 +20,8 @@ export class ProfilComponent implements OnInit {
   knjige : Books[] = [];
   posudbe : Borrowed[] = [];
   posudbeHistory : HistoryBook[] = [];
+
+  currentUser : string = "";
 
   tab : number = 0;
 
@@ -34,6 +36,9 @@ export class ProfilComponent implements OnInit {
     if (typeof sessionStorage.getItem("user") !== "undefined" &&
     sessionStorage.getItem("user") !== null) {
       this.loggedUser = JSON.parse(sessionStorage.getItem("user"));
+      if(this.loggedUser.permission == 0) {
+        this.router.navigateByUrl('/login');
+      }
     } else {
       this.router.navigateByUrl('/login');
     }
@@ -77,14 +82,11 @@ export class ProfilComponent implements OnInit {
       }
     )
     
-  }
-
-  updateBooks() {
-    console.log(this.knjige);
+    this.currentUser = window.location.pathname.split('/')[2];
   }
 
   redirectMenu() {
-    this.router.navigateByUrl('/menu');
+    this.router.navigateByUrl('/administracija');
   }
 
   vrati(author : string, year : number, language : string, link : string, title : string, pages : number, country : string) {

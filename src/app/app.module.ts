@@ -13,6 +13,7 @@ import { BooksComponent } from './books/books.component';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { AdministracijaComponent } from './administracija/administracija.component';
 import { ProfilComponent } from './profil/profil.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProfilComponent } from './profil/profil.component';
     BooksComponent,
     SearchFilterPipe,
     AdministracijaComponent,
-    ProfilComponent
+    ProfilComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

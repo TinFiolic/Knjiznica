@@ -1,7 +1,8 @@
 <button class="btn btn-primary" (click)="redirectMenu()">« Nazad na menu</button>  <hr>
-<button type="button" class="btn btn-light" (click)="changeTab(0)" style="margin-right: 1em; margin-left: 35%;">Importaj knjige</button>
+<button type="button" class="btn btn-light" (click)="changeTab(0)" style="margin-right: 1em; margin-left: 32%;">Importaj knjige</button>
 <button type="button" class="btn btn-light" (click)="changeTab(1)" style="margin-right: 1em;">Unos nove knjige</button>
-<button type="button" class="btn btn-light" (click)="changeTab(2)">Pregled i brisanje knjiga</button> <hr>
+<button type="button" class="btn btn-light" (click)="changeTab(2)">Pregled i brisanje knjiga</button>
+<button type="button" class="btn btn-light" (click)="changeTab(3)">Pregled korisnika</button> <hr>
 <div class="container" style="margin-top: 5em;">
     <div class="row" style="text-align: center;" *ngIf="selectedTab == 0">
       <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px; padding: 20px; margin-right: 20px;">
@@ -57,6 +58,21 @@
                   <td>{{ book.title }}</td>
                   <td>{{ book.year }}</td>
                   <td><button class="btn btn-danger" (click)="obrisiKnjigu(book)">Obriši knjigu</button></td>
+                </tr>
+            </table>
+        </div>
+      </div>
+
+      <div class="row" style="text-align: center;" *ngIf="users.length > 1 && selectedTab == 3">
+        <div class="col-sm" style="border: 2px solid #CFE2FF; border-radius: 5px; padding: 2em; padding-left: 25em;"> <br>
+            <table>
+                <th style="padding-right: 4em">Username</th>
+                <th style="padding-right: 4em">Razina prava</th>
+                <th style="padding-right: 4em"></th>
+                <tr *ngFor="let user of users">
+                  <td style="padding-right: 4em">{{ user.username }}</td>
+                  <td style="padding-right: 4em">{{ user.permission }}</td>
+                  <td style="padding-right: 4em"><button class="btn btn-primary" (click)="otvoriKorisnika(user.username)">Otvori profil korisnika</button></td>
                 </tr>
             </table>
         </div>

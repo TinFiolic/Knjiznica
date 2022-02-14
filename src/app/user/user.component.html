@@ -1,4 +1,4 @@
-<button class="btn btn-primary" (click)="redirectMenu()">« Nazad na menu</button>  <hr>
+<button class="btn btn-primary" (click)="redirectMenu()">« Nazad na admin menu</button>  <hr>
 <button type="button" class="btn btn-light" (click)="changeTab(0)" style="margin-right: 1em; margin-left: 40%;">Trenutne posudbe</button>
 <button type="button" class="btn btn-light" (click)="changeTab(1)" style="margin-right: 1em;">Povijest svih posudbi</button> <hr><br><br>
 
@@ -13,7 +13,7 @@
       <th>Godina izdanja</th>
       <th></th>
       <tr *ngFor="let i = index; let book of posudbe | searchFilter: search">
-        <ng-container *ngIf="book.username == loggedUser.username">
+        <ng-container *ngIf="book.username == currentUser">
           <td>{{ book.book.author }}</td>
           <td>{{ book.book.country }}</td>
           <td>{{ book.book.language }}</td>
@@ -21,7 +21,6 @@
           <td>{{ book.book.pages }}</td>
           <td>{{ book.book.title }}</td>
           <td>{{ book.book.year }}</td>
-          <td><button class="btn btn-success" (click)="vrati(book.book.author, book.book.year, book.book.language, book.book.link, book.book.title, book.book.pages, book.book.country)">Vrati knjigu</button></td>
       </ng-container>
       </tr>
   </table>
@@ -39,7 +38,7 @@
       <th>Godina izdanja</th>
       <th></th>
       <tr *ngFor="let i = index; let book of posudbeHistory | searchFilter: search">
-        <ng-container *ngIf="book.username == loggedUser.username">
+        <ng-container *ngIf="book.username == currentUser">
           <td>{{ book.books.author }}</td>
           <td>{{ book.books.country }}</td>
           <td>{{ book.books.language }}</td>

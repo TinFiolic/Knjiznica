@@ -13,6 +13,9 @@ export class AdministracijaComponent implements OnInit {
 
   booksJson : string = "https://raw.githubusercontent.com/benoitvallon/100-best-books/master/books.json";
   knjigeJson : string = "https://faks-24a45-default-rtdb.europe-west1.firebasedatabase.app/knjige.json";
+  korisniciJson : string = "https://faks-24a45-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+
+  users : User[] = [];
 
   vanjskeKnjige : Books[] = [];
   naseKnjige : Books[] = [];
@@ -72,6 +75,19 @@ export class AdministracijaComponent implements OnInit {
         console.log("Error: " + error);
       }
     )
+
+    /*Korisnici*/
+    this.http.get(this.korisniciJson).subscribe(
+      (response) => {
+        for(let key in response) {
+          this.users.push({...response[key]});
+        }
+      },
+
+      (error) => {
+        console.log("Error: " + error);
+      }
+    )
   }
 
   importBooks() {
@@ -116,6 +132,10 @@ export class AdministracijaComponent implements OnInit {
 
   changeTab(num : number) {
     this.selectedTab = num;
+  }
+
+  otvoriKorisnika(username : string) {
+    this.router.navigateByUrl("/user/" + username);
   }
 
 }

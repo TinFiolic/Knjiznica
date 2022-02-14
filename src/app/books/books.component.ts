@@ -22,8 +22,6 @@ export class BooksComponent implements OnInit {
   posudbe : Borrowed[] = [];
   posudbeHistory : HistoryBook[] = [];
 
-  posudbeKorisnika : HistoryBook[] = [];
-
   search : string = "";
 
   loggedUser : User = null;
@@ -65,7 +63,7 @@ export class BooksComponent implements OnInit {
       }
     )
 
-    /*Posudbe povijest*/
+    /*Posudbe history*/
     this.http.get(this.borrowedBooksHistoryJson).subscribe(
       (response) => {
         for(let key in response) {
@@ -78,11 +76,6 @@ export class BooksComponent implements OnInit {
       }
     )
 
-    for(let i = 0; i < this.posudbeHistory.length; i++) {
-      if(this.posudbeHistory[i].username == this.loggedUser.username) {
-        this.posudbeKorisnika.push(this.posudbeHistory[i]);
-      }
-    }
   }
 
   updateBooks() {
